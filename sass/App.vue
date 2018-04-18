@@ -29,6 +29,7 @@
 </template>
 <script>
 import sass from '../../../static/data/sass.js'
+
 export default {
 	name: 'app',
 	data () {
