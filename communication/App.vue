@@ -24,7 +24,6 @@
 <script>
 	import VueCom from '@/components/VueCommunication.vue'
 	import VuexCom from '@/components/VuexCommunication.vue'
-
 	export default {
 		name: 'app',
 		data () {
