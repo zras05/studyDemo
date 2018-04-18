@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #line,
+        #pie {
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="line"></div>
+    <div id="pie"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.4/echarts-en.common.min.js"></script>
+    <!-- <script src="echarts.min.js"></script> -->
+    <script>
+        var lineChart = echarts.init(document.getElementById('line'))
+        var lineOption = {
+            backgroundColor: '#2c343c',
+            title: {
+                text: 'Customized Pie',
+                left: 'center',
+                top: 20,
+                textStyle: {
+                    color: '#ccc'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            visualMap: {
+                show: false,
+                min: 80,
+                max: 600,
+                inRange: {
+                    colorLightness: [0, 1]
+                }
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '50%'],
+                    data: [
+                        { value: 335, name: '直接访问直接访问直接访问' },
+                        { value: 310, name: '邮件营销邮件营销邮件营销' },
+                        { value: 274, name: '联盟广告联盟广告联盟广告' },
+                        { value: 235, name: '视频广告视频广告视频广告' },
+                        { value: 400, name: '搜索引擎搜索引擎搜索引擎' }
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                    roseType: 'radius',
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            formatter (params) {  
+                                return params.name.replace(/.{4}(?!$)/g, (a) => a + '\n')  
+                            }
+                        },
+                        formatter: function (params) {
+                            return params.replace(/.{3}(?!$)/g, (a) => a + '\n')
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            lineStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            smooth: 0.2,
+                            length: 10,
+                            length2: 20
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#c23531',
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+
+                    animationType: 'scale',
+                    animationEasing: 'elasticOut',
+                    animationDelay: function (idx) {
+                        return Math.random() * 200;
+                    }
+                }
+            ]
+        };
+        lineChart.setOption(lineOption)
+
+        var pieChart = echarts.init(document.getElementById('pie'))
+        var pieOption = {
+            title: {
+                text: 'Step Line'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Step Start', 'Step Middle', 'Step End']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: ['MonMon', 'TueTue', 'WedWed', 'ThuThu', 'FriFri', 'SatSat', 'SunSun'],
+                axisLabel: {
+                    interval: 0,
+                    formatter: function (params) {
+                        return params.replace(/.{3}(?!$)/g, (a) => a + '\n')
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Step Start',
+                    type: 'line',
+                    step: 'start',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Step Middle',
+                    type: 'line',
+                    step: 'middle',
+                    data: [220, 282, 201, 234, 290, 430, 410]
+                },
+                {
+                    name: 'Step End',
+                    type: 'line',
+                    step: 'end',
+                    data: [450, 432, 401, 454, 590, 530, 510]
+                }
+            ]
+        }
+        pieChart.setOption(pieOption)
+    </script>
+</body>
+
+</html>
