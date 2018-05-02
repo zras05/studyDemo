@@ -1,0 +1,52 @@
+/**welcome.wxss**/
+page {
+  height: 100%;
+}
+.container, .welWarp, .startWarp {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.welWarp image, .startWarp image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  animation-delay: 2s;
+}
+.skip {
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  height: 40px;
+  width: calc(100% - 20px);
+  text-align: right;
+  padding-right: 20px;
+  line-height: 40px;
+  color: #dbe2eb;
+}
+.point {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 15px;
+}
+button {
+  width: 60%;
+  position: absolute;
+  bottom: 80px;
+  left: 20%;
+  background: #f27734;
+  color: #fff;
+  border-color: #f27734;
+}
+.startskip {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: rgba(255,255,255,.7);
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 19px;
+}

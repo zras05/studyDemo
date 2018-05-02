@@ -1,0 +1,11 @@
+<!--login.wxml-->
+<view class="container">
+  <!-- <view class='inputWarp'> -->
+    <input placeholder="账户" bindblur='user' style='top: 100px'></input>
+  <!-- </view>
+  <view class='inputWarp'> -->
+    <input placeholder="密码" password='true' bindblur='psd' style='top: 200px'></input>
+  <!-- </view> -->
+  <text>{{alert}}</text>
+  <button bindtap='toIndex'>登录</button>
+</view>

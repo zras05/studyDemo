@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='bg'></view>
+  <view class='count'>
+    <view class='left'>
+      <view class='half orange'></view>
+      <view class='half orange'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+    </view>
+    <view class='center'>
+      <text class='month' bindtap='spendHistroy'>{{countdata.month}}月消费</text>
+      <text class='spend'>￥<text>{{countdata.spend}}</text></text>
+      <text class='total'>额度：<text>{{countdata.total}}</text></text>
+      <text class='overplus'>余额：<text>{{countdata.total - countdata.spend}}</text></text>
+      <text class='percent'>
+       <text>余额</text>
+      <text class='percentnum'>{{100 - countdata.percent}}%</text>
+      </text>
+    </view>
+    <view class='right'>
+      <view class='half orange'></view>
+      <view class='half orange'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+      <view class='half grey'></view>
+    </view>
+  </view>
+  <view class='listWarp'>
+    <scroll-view scroll-y class="spendList">
+      <view class='liWarp' wx:for="{{countdata.type}}" wx:key="{{item}}">
+        <view class='imgWarp'>
+          <image src='../img/icon.png' style='margin-left: {{item.left}};margin-top: {{item.top}};'></image>
+        </view>
+        <view class='tophalf grey'></view>
+        <view class='bottomhalf grey'></view>
+        <text class="liType">{{item.name}}</text>
+        <text class="liNum">￥{{item.cost}}</text>
+        <text class="liPer">{{item.percent}}%</text>
+      </view>
+      <view style='height: 40px'></view>
+    </scroll-view>
+  </view>
+</view>

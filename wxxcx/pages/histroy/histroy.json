@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "历史消费",
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
+}

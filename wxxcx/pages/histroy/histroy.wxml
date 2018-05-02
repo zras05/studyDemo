@@ -1,0 +1,10 @@
+<!--histroy.wxml-->
+<view class="container">
+   <ec-canvas id="lineChart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas> 
+  <view class='hisList'>
+  <view class='hisLi' wx:for="{{countdata.data}}" wx:key="{{item}}">
+    <text class='month'><text>{{item.month}}</text>月份</text>
+    <text class='spend'>收入{{item.income}}，支出{{item.expenditure}}</text>
+  </view>
+  </view>
+</view>

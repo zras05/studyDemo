@@ -1,0 +1,17 @@
+<!--welcome.wxml-->
+<view class="container">
+  <view class='welWarp' style="display:{{isWel?'none':'block'}}">
+    <image src='../img/1.jpg' style='display:{{isSkip == 0?"block":"none"}}' bindtouchmove='skipmove' bindtouchend='skipend'></image>
+    <image src='../img/2.jpg' style='display:{{isSkip == 1?"block":"none"}}' bindtouchmove='skipmove' bindtouchend='skipend'></image>
+    <image src='../img/3.jpg' style='display:{{isSkip == 2?"block":"none"}}' bindtouchmove='skipmove' bindtouchend='skipend'></image>
+    <text class="skip" bindtap='toIndex' style='display:{{isSkip == 2?"none":"block"}}'>跳过</text>
+    <button style='display:{{isSkip != 2?"none":"block"}}' hover-class="none" bindtap='toIndex'>LET'S GO</button>
+    <text class='point' style='background:{{isSkip == 0?"#fc5c04":"#d8d8d8"}};left:calc(50% - 25px);'></text>
+    <text class='point' style='background:{{isSkip == 1?"#fc5c04":"#d8d8d8"}};left:calc(50% - 5px);'></text>
+    <text class='point' style='background:{{isSkip == 2?"#fc5c04":"#d8d8d8"}};left:calc(50% + 15px);'></text>
+  </view>
+  <view class='startWarp' style="display:{{isWel?'block':'none'}}">
+    <image src='../img/start.jpg'></image>
+    <text class='startskip' bindtap='cleartime'>{{skipSecond}} | 跳过</text>
+  </view> 
+</view>
