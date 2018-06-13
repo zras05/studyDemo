@@ -4,28 +4,21 @@
 	  <p @click="msg">msg</p>
 	  <p @click="alert">alert</p>
 	  <p @click="confirm">confirm</p>
-	  <Layer :layer='layer' @close="closeAlert" @confirm="confirmAlert"></Layer>
+	  <Layer :layer='layer' @close="closeAlert(layer)" @confirm="confirmAlert"></Layer>
   </div>
 </template>
 
 <script>
-import Layer from '@/components/Layer'
 export default {
 	name: 'App',
 	data () {
 		return {
-			layer: {
-			}
+			layer: {}
 		}
 	},
-	components: {
-		Layer
-	},
+	components: {},
 	methods: {
 		confirmAlert () {
-			this.layer = {}
-		},
-		closeAlert () {
 			this.layer = {}
 		},
 		loading () {
@@ -62,8 +55,7 @@ export default {
 			}
 		}
 	},
-	mounted () {
-	}
+	mounted () {}
 }
 </script>
 

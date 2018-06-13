@@ -4,8 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-Vue.config.productionTip = false
+import Layer from './components/layer/Layer'
+import layerinit from './components/layer/layerjs.js'
+Vue.use(Layer)
+Vue.use(layerinit)
 
+Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
