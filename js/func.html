@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="es-checker.js"></script>
+    <!-- http://www.ruanyifeng.com/blog/2015/06/es-checker.html -->
+    <script>  
+        if (Supports.letConst) {
+            console.log('支持es6')
+        } else {
+            console.log('不支持es6')
+        }
+
+        let repeat_arr = [9, 0, 8, 2, 'h', 'f', 'p', 'a']
+        let primitive_arr = [1, 7, 9, 4, 1, 2, 5, 0, 'h', 'f', 'b', 'h']
+    
+        let zras_func = {
+            de_duplicatio: function (primitive_arr, repeat_arr, same) {
+                primitive_arr = JSON.parse(JSON.stringify(primitive_arr)) 
+                primitive_arr = [...new Set(primitive_arr)]
+                let answer = []
+                if (repeat_arr) {
+                    repeat_arr = JSON.parse(JSON.stringify(repeat_arr)) 
+                    repeat_arr = [...new Set(repeat_arr)]
+                    if (same) {
+                        for (let i in primitive_arr) {
+                            for (let j in repeat_arr) {
+                                if (primitive_arr[i] === repeat_arr[j]) {
+                                    answer.push(primitive_arr[i])
+                                }
+                            }
+                        }
+                    } else {
+                        // 取不同
+                        answer = primitive_arr
+                        for (let i in answer) {
+                            for (let j in repeat_arr) {
+                                if (answer[i] == repeat_arr[j]) {
+                                    answer.splice(i, 1)
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    answer = [...new Set(primitive_arr)]
+                }
+                return answer
+            },
+            arr_sort: function (primitive_arr, reverse) {
+                primitive_arr = JSON.parse(JSON.stringify(primitive_arr)) 
+                primitive_arr = [...new Set(primitive_arr)]
+                let answer = []
+                if (reverse) {
+                    let arr = primitive_arr.sort()
+                    for (let i = arr.length-1; i>=0; i--) {
+                        answer.push(arr[i])
+                    }
+                } else {
+                    answer = primitive_arr.sort()
+                }
+                return answer
+            },
+            browser_version: function (version) {
+                let answer = ''
+                let userAgent = navigator.userAgent;
+                //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36 OPR/53.0.2907.99
+                let isOpera = userAgent.indexOf("OPR") > -1; //判断是否Opera浏览器  
+                //Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko
+                let isIE11 = userAgent.indexOf("rv") > -1; //判断是否IE浏览器 
+                //Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+                let elseIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+                //Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+                let isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器 
+                //Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30 
+                let isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器  
+                //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+                let isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //判断Chrome浏览器 
+                if (isOpera) {
+                    answer = "Opera"
+                    if (version) {
+                        answer += '' + userAgent.match(/OPR\/([\d.]+)/)[1]
+                    }
+                }
+                else if (isFF) {
+                    answer = "Firefox"
+                    if (version) {
+                        answer += '' + userAgent.match(/Firefox\/([\d.]+)/)[1]
+                    }
+                }
+                else if (isSafari) {
+                    answer = "Safari"
+                    if (version) {
+                        answer += '' + userAgent.match(/Safari\/([\d.]+)/)[1]
+                    }
+                }
+                else if (isChrome) {
+                    answer = "Chrome"
+                    if (version) {
+                        answer += '' + userAgent.match(/Chrome\/([\d.]+)/)[1]
+                    }
+                }
+                else if (isIE11) {
+                    answer = "IE"
+                    if (version) {
+                        answer += '' + userAgent.match(/rv:([\d.]+)/)[1]
+                    }
+                }
+                else if (elseIE) {
+                    answer = "IE-low"
+                    if (version) {
+                        answer += '' + userAgent.match(/MSIE\s([\d.]+)/)[1]
+                    }
+                }
+                return answer
+            }
+        }
+
+        let de_duplicatio = zras_func.de_duplicatio(primitive_arr)
+        let de_duplicatio1 = zras_func.de_duplicatio(primitive_arr, repeat_arr)
+        let de_duplicatio2 = zras_func.de_duplicatio(primitive_arr, repeat_arr, true)
+        let browser_version = zras_func.browser_version(true)
+        let arr_sort = zras_func.arr_sort(primitive_arr)
+        let arr_sort_reverse = zras_func.arr_sort(primitive_arr, true)
+
+        console.log('浏览器类型及版本：' + browser_version)
+        console.log('数组去重： 原数据：')
+        console.log(primitive_arr)
+        console.log(repeat_arr)
+        console.log('去重后数据：')
+        console.log(de_duplicatio)
+        console.log('两数组不同数据：')
+        console.log(de_duplicatio1)
+        console.log('两数组相同数据：')
+        console.log(de_duplicatio2)
+        console.log('正序：')
+        console.log(arr_sort)
+        console.log('倒序：')
+        console.log(arr_sort_reverse)
+    </script>
+</body>
+
+</html>
